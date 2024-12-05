@@ -3,17 +3,20 @@
     <div class="card">
       <div class="card-body">
         <p class="login-box-msg">Iniciar sesión</p>
-        <form action="#" method="post">
+        <form action="#" method="post" [formGroup]="form" (ngSubmit)="login()">
+          <small *ngIf="requiredEmail" class="text-danger">El email es requerido</small>
+          <small *ngIf="validEmail" class="text-danger">El email debe ser válido</small>
           <div class="input-group mb-3">
-            <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+            <input type="email" name="email" id="email" formControlName="email" class="form-control" placeholder="Email" [ngClass]="{'border-danger': requiredEmail || validEmail}">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
               </div>
             </div>
           </div>
+          <small *ngIf="requiredPassword" class="text-danger">La contraseña es requerida</small>
           <div class="input-group mb-3">
-            <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña">
+            <input type="password" name="password" id="password" formControlName="password" class="form-control" placeholder="Contraseña" [ngClass]="{'border-danger': requiredPassword}">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

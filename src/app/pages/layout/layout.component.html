@@ -10,22 +10,22 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <div class="bg-dark font-weight-semibold d-flex align-items-center justify-content-center rounded-circle" style="height: 32px; width: 32px;">M</div>
+          <div class="bg-dark font-weight-semibold d-flex align-items-center justify-content-center rounded-circle" style="height: 32px; width: 32px;">{{ initialLetter }}</div>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a routerLink="/admin/dashboard" href="#" class="dropdown-item">
             <div class="media">
-              <div class="img-size-50 mr-3 img-circle bg-dark font-weight-semibold d-flex align-items-center justify-content-center rounded-circle" style="height: 40px; width: 40px;">M</div>
+              <div class="img-size-50 mr-3 img-circle bg-dark font-weight-semibold d-flex align-items-center justify-content-center rounded-circle" style="height: 40px; width: 40px;">{{ initialLetter }}</div>
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  Mike McMillan
+                  {{ userName }}
                 </h3>
-                <p class="text-sm">Administrador</p>
+                <p class="text-sm">{{ roleName }}</p>
               </div>
             </div>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+          <button (click)="logout()" type="button" class="dropdown-item dropdown-footer">Cerrar sesión</button>
         </div>
       </li>
     </ul>
@@ -40,7 +40,6 @@
     <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-header">Navegación principal</li>
           <li class="nav-item">
             <a routerLink="/admin/dashboard" routerLinkActive="active" href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
