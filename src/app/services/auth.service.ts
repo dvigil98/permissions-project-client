@@ -56,4 +56,14 @@ export class AuthService {
       return true;
     return false;
   }
+
+  hasPermission(permission: string) {
+    let hasPermission = false;
+    let user = JSON.parse(this.getUser());
+    user.role_permissions.forEach((role_permission: any) => {
+      if (role_permission.permission.code == permission && role_permission.active == 1)
+        hasPermission = true;
+    });
+    return hasPermission;
+  }
 }

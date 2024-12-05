@@ -1,0 +1,27 @@
+<form action="#" method="post" [formGroup]="form" (ngSubmit)="search()">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <select name="critery" id="critery" formControlName="critery" class="form-control" [ngClass]="{'border-danger' : requiredCritery}">
+          <option value="" selected disabled hidden>Buscar por</option>
+          <option *ngFor="let item of searchBy" value="{{ item.value }}">{{ item.text }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="text" name="value" id="value" formControlName="value" class="form-control" placeholder="Texto de buesqueda..." [ngClass]="{'border-danger' : requiredValue}">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <button type="submit" class="btn btn-light btn-block border" title="Buscar"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <button (click)="clear()" type="button" class="btn btn-light btn-block border" title="Limpiar"><i class="fas fa-sync-alt"></i></button>
+      </div>
+    </div>
+  </div>
+</form>

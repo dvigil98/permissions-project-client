@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  hasPermission: boolean = false;
+
+  constructor(
+    protected authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.hasPermission = this.authService.hasPermission('ver_dashboard');
   }
 }
