@@ -59,12 +59,8 @@ export class AssingPermissionsComponent implements OnInit {
       rp.push(selected)
     });
 
-    console.log(rp);
-
     this.roleService.setRolePermissionsToRole(rp, Number(id)).subscribe({
       next: (r) => {
-
-        console.log(r);
 
         Swal.fire({
           title: '¡Exito!',
@@ -74,11 +70,10 @@ export class AssingPermissionsComponent implements OnInit {
 
       },
       error: (e) => {
-
         console.log(e);
 
         Swal.fire({
-          title: '¡Ooops!',
+          title: '¡Oops!',
           text: 'Datos no guardados',
           icon: 'error'
         });
