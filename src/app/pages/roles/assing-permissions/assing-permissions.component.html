@@ -1,0 +1,87 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="font-weight-bold">Roles y permisos</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/admin/dashboard" href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/roles" href="#">Lista de roles</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Asigar permisos a rol</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <form action="#" method="post" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <p class="text-muted mb-0">Id:</p>
+                      <p>{{ role.id }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <p class="text-muted mb-0">Nombre:</p>
+                      <p>{{ role.name }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <a routerLink="/admin/roles" href="#" class="btn btn-dark btn-block">Cancelar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div *ngFor="let module of modules" class="col-md-4">
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">Modulo: {{ module.name }}</h3>
+                      </div>
+                      <div class="card-body">
+                        <div formArrayName="permissions">
+                          <div *ngFor="let permission of permissions.controls; let i=index">
+                            <ng-container *ngIf="module.name == rolePermissions[i].permission?.module">
+                              <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="{{ rolePermissions[i].id }}" [formControlName]="i" value="{{ rolePermissions[i].id }}">
+                                <label class="custom-control-label" for="{{ rolePermissions[i].id }}" style="cursor: pointer;">{{ rolePermissions[i].permission?.name }}</label>
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

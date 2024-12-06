@@ -48,6 +48,7 @@
                       <td>{{ role.name }}</td>
                       <td class="text-right">
                         <div class="btn-group">
+                          <a *ngIf="authService.hasPermission('asignar_permisos_roles')" routerLink="/admin/roles/{{ role.id }}/permissions" href="#" class="btn btn-light border" title="Asignar permisos"><i class="fas fa-plus-circle"></i></a>
                           <a *ngIf="authService.hasPermission('ver_roles')" routerLink="/admin/roles/{{ role.id }}" href="#" class="btn btn-light border" title="ver detalles"><i class="fas fa-info-circle"></i></a>
                           <a *ngIf="authService.hasPermission('editar_roles')" routerLink="/admin/roles/{{ role.id }}/edit" href="#" class="btn btn-light border" title="Editar"><i class="fas fa-marker"></i></a>
                           <button *ngIf="authService.hasPermission('eliminar_roles')" (click)="deleteRole(role.id)" type="button" class="btn btn-light border" title="Eliminar"><i class="fas fa-trash"></i></button>

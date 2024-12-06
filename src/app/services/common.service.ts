@@ -21,6 +21,10 @@ export class CommonService {
     return this.http.get<Response>(`${this.baseUrl}/common/roles`, { headers: this.getHeaders() });
   }
 
+  getModules(): Observable<Response> {
+    return this.http.get<Response>(`${this.baseUrl}/common/modules`, { headers: this.getHeaders() });
+  }
+
   private getHeaders(): HttpHeaders {
 
     let user = JSON.parse(this.authService.getUser());

@@ -18,6 +18,7 @@ import { UserIndexComponent } from './pages/users/user-index/user-index.componen
 import { UserCreateComponent } from './pages/users/user-create/user-create.component';
 import { UserEditComponent } from './pages/users/user-edit/user-edit.component';
 import { UserShowComponent } from './pages/users/user-show/user-show.component';
+import { AssingPermissionsComponent } from './pages/roles/assing-permissions/assing-permissions.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserShowComponent } from './pages/users/user-show/user-show.component';
     UserIndexComponent,
     UserCreateComponent,
     UserEditComponent,
-    UserShowComponent
+    UserShowComponent,
+    AssingPermissionsComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import { UserIndexComponent } from './pages/users/user-index/user-index.componen
 import { UserCreateComponent } from './pages/users/user-create/user-create.component';
 import { UserEditComponent } from './pages/users/user-edit/user-edit.component';
 import { UserShowComponent } from './pages/users/user-show/user-show.component';
+import { AssingPermissionsComponent } from './pages/roles/assing-permissions/assing-permissions.component';
 
 const routes: Routes = [
   // redirigir al login
@@ -69,6 +70,12 @@ const routes: Routes = [
         component: RoleShowComponent,
         canActivate: [AuthGuard, PermissionGuard],
         data: { permission: 'ver_roles' }
+      },
+      {
+        path: 'roles/:id/permissions',
+        component: AssingPermissionsComponent,
+        canActivate: [AuthGuard, PermissionGuard],
+        data: { permission: 'asignar_permisos_roles' }
       },
       // usuarios
       {

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Response } from '../core/utils/response';
 import { Role } from '../models/role.model';
 import { environment } from '../../environments/environment';
+import { RolePermission } from '../models/role-permission.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,14 @@ export class RoleService {
 
   searchRoles(critery: string, value: string): Observable<Response> {
     return this.http.get<Response>(`${this.baseUrl}/roles/${critery}/${value}/search`, { headers: this.getHeaders() });
+  }
+
+  getRolePermissionsByRole(role_id: number): Observable<Response> {
+    return this.http.get<Response>(`${this.baseUrl}/roles/${role_id}/permissions`, { headers: this.getHeaders() });
+  }
+
+  setRolePermissionsToRole(rolePermission: any, role_id: number): Observable<Response> {
+    return this.http.put<Response>(`${this.baseUrl}/roles/${role_id}/permissions`, { role_permissions: rolePermission }, { headers: this.getHeaders() });
   }
 
   private getHeaders(): HttpHeaders {
