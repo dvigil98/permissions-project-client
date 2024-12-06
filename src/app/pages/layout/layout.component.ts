@@ -15,7 +15,7 @@ export class LayoutComponent implements OnInit {
   roleName: string = '';
 
   constructor(
-    private authService: AuthService,
+    protected authService: AuthService,
     private router: Router
   ) { }
 

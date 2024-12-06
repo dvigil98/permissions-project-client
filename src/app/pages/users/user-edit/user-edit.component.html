@@ -1,0 +1,79 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="font-weight-bold">Usuarios</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/admin/dashboard" href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/users" href="#">Lista de usuarios</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Editar usuario</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <form action="#" method="post" [formGroup]="form" (ngSubmit)="updateUser()">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="name">Nombre:</label>
+                      <input type="text" name="name" id="name" formControlName="name" class="form-control" placeholder="Nombre..." [ngClass]="{'border-danger' : requiredName}">
+                      <small *ngIf="requiredName" class="text-danger">El nombre es requerido</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email:</label>
+                      <input type="email" name="email" id="email" formControlName="email" class="form-control" placeholder="Email..." [ngClass]="{'border-danger' : requiredEmail || validEmail}">
+                      <small *ngIf="requiredEmail" class="text-danger">El email es requerido</small>
+                      <small *ngIf="validEmail" class="text-danger">El email debe ser válido</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Contraseña:</label>
+                      <input type="password" name="password" id="password" formControlName="password" class="form-control" placeholder="Contraseña..." [ngClass]="{'border-danger' : requiredPassword}">
+                      <small *ngIf="requiredPassword" class="text-danger">La contraseña es requerida</small>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="role_id">Rol:</label>
+                      <select name="role_id" id="role_id" formControlName="role_id" class="form-control" [ngClass]="{'border-danger' : requiredRoleId}">
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let role of roles" value="{{ role.id }}">{{ role.name }}</option>
+                      </select>
+                      <small *ngIf="requiredRoleId" class="text-danger">El rol es requerido</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="active">Estado:</label>
+                      <select name="active" id="active" formControlName="active" class="form-control" [ngClass]="{'border-danger' : requiredActive}">
+                        <option value="">Seleccione</option>
+                        <option value="0">Inactivo</option>
+                        <option value="1">Activo</option>
+                      </select>
+                      <small *ngIf="requiredActive" class="text-danger">El estado es requerido</small>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary">Actualizar</button>
+                      <a routerLink="/admin/users" href="#" class="btn btn-dark ml-1">Cancelar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

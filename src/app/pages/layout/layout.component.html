@@ -47,13 +47,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a *ngIf="authService.hasPermission('ver_roles')" routerLink="/admin/roles" routerLinkActive="active" href="#" class="nav-link">
               <i class="nav-icon fas fa-users-cog"></i>
               <p>Roles y permisos</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a *ngIf="authService.hasPermission('ver_usuarios')" routerLink="/admin/users" routerLinkActive="active" href="#" class="nav-link">
               <i class="nav-icon fas fa-user-shield"></i>
               <p>Usuarios</p>
             </a>

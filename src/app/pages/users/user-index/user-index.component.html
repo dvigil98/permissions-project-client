@@ -1,0 +1,82 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="font-weight-bold">Usuarios</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/admin/dashboard" href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Lista de usuarios</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <a *ngIf="authService.hasPermission('agregar_usuarios')" routerLink="/admin/users/create" href="#" class="btn btn-light border"><i class="fas fa-plus-circle"></i> Agregar usuario</a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <app-search [searchBy]="searchBy" (searchEvent)="searchUsers($event)" (clearEvent)="clear()"></app-search>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body py-0 px-0">
+              <div class="table-responsive">
+                <table class="table table-borderless table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>NOMBRE</th>
+                      <th>EMAIL</th>
+                      <th>ROL</th>
+                      <th>ESTADO</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td *ngIf="users.length === 0" class="text-center" colspan="6">
+                        <p>Datos no disponibles</p>
+                      </td>
+                    </tr>
+                    <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
+                      <td class="font-weight-bold">{{ user.id }}</td>
+                      <td>{{ user.name }}</td>
+                      <td>{{ user.email }}</td>
+                      <td>{{ user.role?.name }}</td>
+                      <td>
+                        <span *ngIf="user.active; else inactive" class="badge badge-success">Activo</span>
+                        <ng-template #inactive>
+                          <span class="badge badge-danger">Inactivo</span>
+                        </ng-template>
+                      </td>
+                      <td class="text-right">
+                        <div class="btn-group">
+                          <a *ngIf="authService.hasPermission('ver_usuarios')" routerLink="/admin/users/{{ user.id }}" href="#" class="btn btn-light border" title="ver detalles"><i class="fas fa-info-circle"></i></a>
+                          <a *ngIf="authService.hasPermission('editar_usuarios')" routerLink="/admin/users/{{ user.id }}/edit" href="#" class="btn btn-light border" title="Editar"><i class="fas fa-marker"></i></a>
+                          <button *ngIf="authService.hasPermission('eliminar_usuarios')" (click)="deleteUser(user.id)" type="button" class="btn btn-light border" title="Eliminar"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row text-center">
+                <div class="col-md-12">
+                  <pagination-controls (pageChange)="p = $event" [responsive]="true" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
